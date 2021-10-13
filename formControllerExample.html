@@ -1,0 +1,149 @@
+<meta charset="utf-8">
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script type="text/javascript" src="/js/formController.js"></script>
+
+
+<form name="testform" onsubmit="return $.myFormCheck.formCheck(this)">
+	아이디 : <input type="text" name="id" required="아이디 필수입력"><br><br>
+
+	비밀번호 : <input type="password" name="pw" required="비밀번호 필수입력해주세요" password="영문, 숫자, 특수문자 조합으로 해주세요"><br><br>
+
+	숫자 : <input type="text" name="num" required="숫자 필수입력" number="숫자만 입력해주세요"><br><br>
+
+	영문 : <input type="text" name="eng" required="영문 필수입력" english="영문만 입력해주세요"><br><br>
+
+	한글 : <input type="text" name="kor" required="한글 필수입력" korea="한글만 입력해주세요"><br><br>
+
+	전화번호 : <input type="text" name="tel" required="전화번호 필수입력" phone="전화번호 형식"><br><br>
+
+	전화번호1 :
+	<input type="text" name="tel1" required="전화번호 필수입력" phone1="전화번호 형식1"> -
+	<input type="text" name="tel2" required="전화번호 필수입력" phone2="전화번호 형식2"> -
+	<input type="text" name="tel3" required="전화번호 필수입력" phone3="전화번호 형식3"><br><br>
+
+	이메일 : <input type="text" name="email" required="이메일 필수입력" email="이메일 형식"><br><br>
+
+	이메일1 :
+	<input type="text" name="email1" required="이메일 필수입력" email1="이메일 형식1"> @
+	<select name="email2" required="이메일 필수입력" email2="이메일 형식2">
+		<option value="">--선택--</option>
+		<option value="naver.com">naver.com</option>
+		<option value="daum.net">daum.net</option>
+	</select>
+	<br><br>
+
+	이미지 : <input type="file" name="img" required="이미지" image="이미지 확장자"><br><br>
+
+	동영상 : <input type="file" name="mov" required="동영상" movie="동영상 확장자"><br><br>
+
+	문서 : <input type="file" name="txt" required="문서" word="문서 확장자"><br><br>
+
+	취미 :
+	<input type="checkbox" name="chk[]" value="1" required="취미"> 노래
+	<input type="checkbox" name="chk[]" value="2" required="취미"> 요리
+	<input type="checkbox" name="chk[]" value="3" required="취미"> 등산
+	<input type="checkbox" name="chk[]" value="4" required="취미"> 걷기
+	<br><br>
+
+	나이대 :
+	<input type="radio" name="sex" value="1" required="나이대"> 10대
+	<input type="radio" name="sex" value="2" required="나이대"> 20대
+	<input type="radio" name="sex" value="3" required="나이대"> 30대
+	<input type="radio" name="sex" value="4" required="나이대"> 40대
+	<input type="radio" name="sex" value="5" required="나이대"> 50대
+	<br><br>
+
+	내용 : <textarea name="content" required="내용"></textarea><br><br>
+
+	히든 : <input type="hidden" name="hide"><br><br>
+
+	그외 타입 : <input type="number" name="amount" value="1" min="1" max="10"><br><br>
+
+	<input type="submit" value="어트리뷰트 전송">
+</form>
+
+
+<br><br><br>
+<form name="testform2" onsubmit="return testSubmit2()">
+	위의 폼 체크 가능
+	<input type="submit" value="서브 전송">
+</form>
+
+
+<br><br><br>
+<form name="testform3" onsubmit="return testSubmit3()">
+	위의 폼 체크 가능
+	<input type="submit" value="서브 전송">
+</form>
+
+
+<script>
+	// 필수로 있어야됨.
+	$.myFormCheck.setFormCheck(document.testform);
+	$.myFormCheck.setFormCheck(document.testform2);
+
+	function testSubmit2() {
+		let formResult = $.myFormCheck.formCheckSub([
+			["testform", "id", "required", "아이디 필수입력"],
+			["testform", "pw", "required", "비밀번호 필수입력해주세요"],
+			["testform", "pw", "password", "영문, 숫자, 특수문자 조합으로 해주세요"],
+			["testform", "num", "required", "숫자 필수입력"],
+			["testform", "eng", "required", "영문 필수입력"],
+			["testform", "kor", "required", "한글 필수입력"],
+			["testform", "tel", "required", "전화번호 필수입력"],
+			["testform", "tel1", "required", "전화번호 필수입력"],
+			["testform", "tel2", "required", "전화번호 필수입력"],
+			["testform", "tel3", "required", "전화번호 필수입력"],
+			["testform", "email", "required", "이메일 필수입력"],
+			["testform", "email1", "required", "이메일 필수입력"],
+			["testform", "email2", "required", "이메일 필수입력"],
+			["testform", "img", "required", "이미지"],
+			["testform", "mov", "required", "동영상"],
+			["testform", "txt", "required", "문서"],
+			["testform", "chk[]", "required", "취미"],
+			["testform", "sex", "required", "나이대"],
+			["testform", "content", "required", "내용"],
+			["testform", "hide", "required", "null"],
+			["testform", "amount", "required", "null"],
+			["testform", "", "required", "null"],
+		]);
+
+		if (formResult == false) {
+			return false;
+		}
+
+		return true;
+	}
+
+	function testSubmit3() {
+		if ($.myFormCheck.formCheckSub(["testform", "id", "required", "아이디 필수입력"]) == false){ return false; }
+		if ($.myFormCheck.formCheckSub(["testform", "pw", "required", "비밀번호 필수입력해주세요"]) == false){ return false; }
+		if ($.myFormCheck.formCheckSub(["testform", "pw", "password", "영문, 숫자, 특수문자 조합으로 해주세요"]) == false){ return false; }
+		if ($.myFormCheck.formCheckSub(["testform", "num", "required", "숫자 필수입력"]) == false){ return false; }
+		if ($.myFormCheck.formCheckSub(["testform", "eng", "required", "영문 필수입력"]) == false){ return false; }
+		if ($.myFormCheck.formCheckSub(["testform", "kor", "required", "한글 필수입력"]) == false){ return false; }
+		if ($.myFormCheck.formCheckSub(["testform", "tel", "required", "전화번호 필수입력"]) == false){ return false; }
+		if ($.myFormCheck.formCheckSub(["testform", "tel1", "required", "전화번호 필수입력"]) == false){ return false; }
+		if ($.myFormCheck.formCheckSub(["testform", "tel2", "required", "전화번호 필수입력"]) == false){ return false; }
+		if ($.myFormCheck.formCheckSub(["testform", "tel3", "required", "전화번호 필수입력"]) == false){ return false; }
+		if ($.myFormCheck.formCheckSub(["testform", "email", "required", "이메일 필수입력"]) == false){ return false; }
+		if ($.myFormCheck.formCheckSub(["testform", "email1", "required", "이메일 필수입력"]) == false){ return false; }
+		if ($.myFormCheck.formCheckSub(["testform", "email2", "required", "이메일 필수입력"]) == false){ return false; }
+		if ($.myFormCheck.formCheckSub(["testform", "img", "required", "이미지"]) == false){ return false; }
+		if ($.myFormCheck.formCheckSub(["testform", "mov", "required", "동영상"]) == false){ return false; }
+		if ($.myFormCheck.formCheckSub(["testform", "txt", "required", "문서"]) == false){ return false; }
+		if ($.myFormCheck.formCheckSub(["testform", "chk[]", "required", "취미"]) == false){ return false; }
+		if ($.myFormCheck.formCheckSub(["testform", "sex", "required", "나이대"]) == false){ return false; }
+		if ($.myFormCheck.formCheckSub(["testform", "content", "required", "내용"]) == false){ return false; }
+		if ($.myFormCheck.formCheckSub(["testform", "hide", "required", "null"]) == false){ return false; }
+		if ($.myFormCheck.formCheckSub(["testform", "amount", "required", "null"]) == false){ return false; }
+		if ($.myFormCheck.formCheckSub(["testform", "", "required", "null"]) == false){ return false; }
+
+		return true;
+	}
+
+	$.myFormCheck.formCheckPrint(document.testform);
+	$.myFormCheck.formCheckPrintArray(document.testform);
+</script>
+
