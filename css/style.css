@@ -1,0 +1,39 @@
+* {
+    margin: 0;
+}
+
+ul {
+    list-style:none;
+}
+
+body {
+    background-color: #3d5a80;
+}
+
+.MouseCursor {
+    display: none;
+}
+
+ul.MouseCursor {
+    margin: 0;
+    padding: 0;
+}
+
+.MouseCursor li {
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+    border: 0;
+    float: left;
+    display: block;
+}
+
+.MouseCursor li img{
+    width: 30px;
+    height: 30px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.MouseMenu {
+
+}
